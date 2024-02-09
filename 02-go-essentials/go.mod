@@ -1,3 +1,2 @@
-module example.com/first-app
-
+module example.com/investment-calculator
 go 1.18
