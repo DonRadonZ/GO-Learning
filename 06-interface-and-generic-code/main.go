@@ -19,9 +19,43 @@ type saver interface {
 // 	Display()
 // }
 
-type outputtable interface{
+type outputtable interface {
 	saver
 	Display()
+}
+
+// interface{} = any
+func printSomething(value interface{}) {
+	intVal, ok := value.(int)
+
+	if ok {
+		fmt.Println("Integer:", intVal)
+		return
+	}
+
+	floatVal, ok := value.(float64)
+
+	if ok {
+		fmt.Println("Integer:", floatVal)
+		return
+	}
+
+	stringVal, ok := value.(string)
+
+	if ok {
+		fmt.Println("Integer:", stringVal)
+		return
+	}
+
+	
+	// switch value.(type) {
+	// case int:
+	// 	fmt.Println("Integer:", value)
+	// case float64:
+	// 	fmt.Println("Float:", value)
+	// case string:
+	// 	fmt.Println(value)
+	// }
 }
 
 // type outputtable interface{
@@ -30,6 +64,10 @@ type outputtable interface{
 // }
 
 func main() {
+	printSomething(1)
+	printSomething(1.5)
+	printSomething("Hello")
+	
 	title, content := getNoteData()
 	todoText := getUserInput("Todo text: ")
 
@@ -57,8 +95,8 @@ func main() {
 }
 
 func outputData(data outputtable) error {
-  data.Display()
-  return saveData(data)
+	data.Display()
+	return saveData(data)
 }
 
 func saveData(data saver) error {
