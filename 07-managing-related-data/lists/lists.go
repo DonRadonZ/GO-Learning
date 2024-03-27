@@ -1,4 +1,4 @@
-// package lists
+package lists
 
 import "fmt"
 
