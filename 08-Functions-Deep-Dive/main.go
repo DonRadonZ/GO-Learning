@@ -2,32 +2,20 @@ package main
 
 import "fmt"
 
-type transformFn func(int) int
-
-// type anotherFn func(int, []string, map[string][]int) ([]int,string)
-
 func main() {
-	numbers := []int{1, 2, 3, 4, 5}
-	doubled := transformNumbers(&numbers, double)
-	tripled := transformNumbers(&numbers, triple)
-	fmt.Println(doubled)
-	fmt.Println(tripled)
+	numbers := []int{1, 10, 15}
+	sum := sumup(1, 10, 15)
+	anotherSum := sumup(1, numbers...)
+
+	fmt.Println(sum)
+	fmt.Println(anotherSum)
 }
 
-func transformNumbers(numbers *[]int,transform transformFn) []int {
-	dNumbers := []int{}
+func sumup(startingValue int, numbers ...int) int {
+	sum := 0
 
-	for _, val := range *numbers {
-		dNumbers = append(dNumbers, double(val))
+	for _, val := range numbers {
+		sum += val // sum = sum + val
 	}
-
-	return dNumbers
-}
-
-func double(number int) int{
-	return number * 2
-}
-
-func triple(number int) int{
-	return number * 3
+	return sum
 }
